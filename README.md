@@ -11,13 +11,13 @@ They want to implement a data warehouse which is designed to optimise queries on
 #### Source Data
 The source data resides on AWS S3 and needs to be processed in Valdivian's data warehouse which resides on Amazon Redshift. The source datasets consist of JSON file of logs that tell them about users **ratings** of books on their store, CSV files that hold **users** information, and CSV metadata about the **books** the are available on the store.
 
-* **s3://udacity-capstone-project-828/ratings**: data book ratings, example of row '0' of the data as follows:
+* **s3://udacity-capstone-project-828/ratings**: data about book ratings, example of row '0' of the data as follows:
   `{'Book-Rating': 0, 'ISBN': '034545104X', 'User-ID': 276725}`
 
-* **s3://udacity-capstone-project-828/users**: data about artists and songs, example of row '0' of the data as follows:
+* **s3://udacity-capstone-project-828/users**: data about users, example of row '0' of the data as follows:
   `{'User-ID': 1, 'Location': 'nyc, new york, usa', 'Age': nan}`
 
-* **s3://udacity-capstone-project-828/books**: data of logs of usage of the app, example of row '0' of the data as follows:
+* **s3://udacity-capstone-project-828/books**: data books available from this store, example of row '0' of the data as follows:
   `{'ISBN': '0195153448', 'book_title': 'Classical Mythology', 'book_author': 'Mark P. O. Morford', 'year_of_publication': '2002', 'publisher': 'Oxford University Press', 'img_s': 'http://images.amazon.com/images/P/0195153448.01.THUMBZZZ.jpg', 'img_m': 'http://images.amazon.com/images/P/0195153448.01.MZZZZZZZ.jpg', 'img_l': 'http://images.amazon.com/images/P/0195153448.01.LZZZZZZZ.jpg'}`
 
 #### Project Technologies
