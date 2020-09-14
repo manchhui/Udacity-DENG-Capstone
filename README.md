@@ -35,4 +35,4 @@ A brief description of each of the three core technologies that is used in this 
 ## 1. Database Design Description
 The data from the three source datasets, described above, will be used to create the following snowflake schema database for optimized queries on book ratings:
 
-![](https://github.com/manchhui/Udacity-DENG-Capstone/blob/master/F306E320-C567-4E03-90F1-8C34CAF13778.jpeg)
+![](https://github.com/manchhui/Udacity-DENG-Capstone/blob/master/21EE3C3C-9D3F-43AA-8EC0-A09BCAC3EA57.jpeg)
