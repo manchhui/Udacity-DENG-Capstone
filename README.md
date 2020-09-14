@@ -36,3 +36,31 @@ A brief description of each of the three core technologies that is used in this 
 The data from the three source datasets, described above, will be used to create the following snowflake schema database for optimized queries on book ratings:
 
 ![](https://github.com/manchhui/Udacity-DENG-Capstone/blob/master/21EE3C3C-9D3F-43AA-8EC0-A09BCAC3EA57.jpeg)
+
+## 1.1 Fact Table
+The fact table in this snowflake scheme will be named "ratings" and is designed to record "ratings" data of books from various users. The following is: `Row 0 '{'idbookratings': 'c2ad834c9e62bdc0067c4ad4081bc491', 'isbn': '0440214041', 'iduser': 181077, 'rating': 0}' of the FACT table 'ratings'`
+- idbookratings: Hash of **concatenation** of `isbn' & 'isuser' & 'rating`, to form a unique id for each rating.
+- isbn: unique number of each book.
+- iduser: unique number for each user.
+- rating: rating of by user `iduser` of book `isbn`.
+
+
+### 1.2 Dimension Tables
+The following tables in this snowflake scheme are all dimension tables.
+- users - This table will be used to record unique user details. The following is: `Row 0 '{'iduser': 533, 'location': 'london, england, united kingdom', 'age': 31}' of DIMENSION table 'users'
+
+- yearofpub - This table will be used to record unique song details. The following is: `Row 0 '{'yearofpub': 1974, 'isbn': '0800706544'}' of DIMENSION table 'yearofpub'`
+
+- books_publisher - This table will be used to record, the number of ISBN's for each unique `idpublisher`. The following is: `Row 0 '{'idpublishers': 'cd47a7d6631d514987e4b09da9e71841', 'isbn': '0865050880'}' of DIMENSION table 'books_publisher'`
+
+- publishers - This table will be used to record unique publisher details. The following is: `Row 0 '{'idpublishers': '9af8b47d680fdeb68d9d26cfaaba70b3', 'publisher': 'Bantam Books'}' of DIMENSION table 'publishers'`
+
+- TBC - Row 0 '{'isbn': '8445071769', 'idauthor': '153e43074eabeb5d58200def94650acd'}' of DIMENSION table 'books_author'
+
+- TBC -  Row 0 '{'idauthor': '1f96f4fd318463bfbff78f45b2691a2d', 'authorname': 'Richard Bruce Wright'}' of DIMENSION table 'authors'
+
+- TBC -  Row 0 '{'idtitles': '6beeacd4188d25601b22f0073d164f88', 'isbn': '0553280333'}' of DIMENSION table 'books_title'
+
+- TBC -  Row 0 '{'idtitles': '6a9934e08ff5b352fda9c7ed7428f302', 'title': 'Modern Manners: An Etiquette Book for Rude People'}' of DIMENSION table 'titles'
+
+<br/>
