@@ -1,15 +1,21 @@
-DROP TABLE IF EXISTS "staging_users"; 
-DROP TABLE IF EXISTS "staging_books"; 
-DROP TABLE IF EXISTS "staging_ratings"; 
+DROP TABLE IF EXISTS staging_users; 
+DROP TABLE IF EXISTS staging_books; 
+DROP TABLE IF EXISTS staging_ratings;
+DROP TABLE IF EXISTS books_publisher ;
+DROP TABLE IF EXISTS books_author ;
+DROP TABLE IF EXISTS books_title ;
+DROP TABLE IF EXISTS publishers ;
+DROP TABLE IF EXISTS authors ;
+DROP TABLE IF EXISTS titles ;
 DROP TABLE IF EXISTS yearofpub ;
 DROP TABLE IF EXISTS ratings ;
 DROP TABLE IF EXISTS users ;
 
-CREATE TABLE "staging_users" ("iduser" int,
+CREATE TABLE staging_users ("iduser" int,
                             "location" varchar(256),
                             "age" real);
 
-CREATE TABLE "staging_books" ("isbn" varchar,
+CREATE TABLE staging_books ("isbn" varchar,
                             "booktitle" varchar(512),
                             "bookauthor" varchar(256),
                             "yearofpub" int,
@@ -18,7 +24,7 @@ CREATE TABLE "staging_books" ("isbn" varchar,
                             "img_m" varchar(512),
                             "img_l" varchar(512));
 
-CREATE TABLE "staging_ratings" ("bookrating" varchar,
+CREATE TABLE staging_ratings ("bookrating" varchar,
                                 "isbn" varchar,
                                 "iduser" varchar);
                                             
@@ -47,7 +53,7 @@ CREATE TABLE IF NOT EXISTS authors (
   authorname VARCHAR(256) NOT NULL,
   PRIMARY KEY (idauthor));
                
-CREATE TABLE IF NOT EXISTS books_authors (
+CREATE TABLE IF NOT EXISTS books_author (
   ISBN VARCHAR(256) NOT NULL,
   idauthor VARCHAR(256) NOT NULL,
   PRIMARY KEY (ISBN),
