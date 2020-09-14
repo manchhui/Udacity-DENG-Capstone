@@ -28,7 +28,7 @@ A brief description of each of the three core technologies that is used in this 
 
 > **Description**: **Apache Airflow** is an open-source workflow management platform. It started at Airbnb in October 2014 as a solution to manage the company's increasingly complex workflows. Creating Airflow allowed Airbnb to programmatically author and schedule their workflows and monitor them via the built-in Airflow user interface. From the beginning, the project was made open source, becoming an Apache Incubator project in March 2016 and a Top-Level Apache Software Foundation project in January 2019. [Wikipedia](https://en.wikipedia.org/wiki/Apache_Airflow).
 
-> **Rationale**: With a potential for 100x increase in data and hundreds of concurrent users querying the data, from the current approximately one million rows or a few hundred megabytes of data and tens of users, Amazon Redshift coupled with S3 storage and Airflow is the preferred solution going forward. The technology itself is easily scalable removing the need for Valdivian to manage onsite infrastructure, quickly scale up or down computational resources and allow robust ETL pipelines that could be built with ease.
+> **Rationale**: With a potential for 100x increase in data and hundreds of concurrent users querying the data, from the current approximately one million rows or a few hundred megabytes of data and tens of users, Amazon Redshift coupled with S3 storage and Airflow is the preferred solution going forward. The technology itself is easily scalable removing the need for Valdivian to manage onsite infrastructure, amd therefore can quickly scale up or down computational resources and allow robust ETL pipelines to be built and maintained with ease.
 
 <br/>
 
