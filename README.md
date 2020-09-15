@@ -37,7 +37,7 @@ The data from the three source datasets, described above, will be used to create
 
 ![](https://github.com/manchhui/Udacity-DENG-Capstone/blob/master/21EE3C3C-9D3F-43AA-8EC0-A09BCAC3EA57.jpeg)
 
-## 1.1 Fact Table
+### 1.1 Fact Table
 The fact table in this snowflake scheme will be named "ratings" and is designed to record "ratings" data of books from various users. The following is: `Row 0 '{'idbookratings': 'c2ad834c9e62bdc0067c4ad4081bc491', 'isbn': '0440214041', 'iduser': 181077, 'rating': 0}' of the FACT table 'ratings'`
 - idbookratings: Hash of **concatenation** of `isbn' & 'isuser' & 'rating`, to form a unique id for each rating.
 - isbn: unique number of each book.
