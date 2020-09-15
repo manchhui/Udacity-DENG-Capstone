@@ -1,4 +1,4 @@
-from helpers.sql_queries import SqlCAPQueries
+from helpers.sql_cap_queries import SqlCAPQueries
 
 __all__ = [
     'SqlCAPQueries',
