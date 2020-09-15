@@ -1,7 +1,7 @@
-from operators.stage_redshift import StageToRedshiftOperatorCAP
-from operators.load_fact import LoadFactOperatorCAP
-from operators.load_dimension import LoadDimensionOperatorCAP
-from operators.data_quality import DataQualityOperatorCAP
+from operators.stage_cap_redshift import StageToRedshiftOperatorCAP
+from operators.load_cap_fact import LoadFactOperatorCAP
+from operators.load_cap_dimension import LoadDimensionOperatorCAP
+from operators.data_cap_quality import DataQualityOperatorCAP
 
 __all__ = [
     'StageToRedshiftOperatorCAP',
