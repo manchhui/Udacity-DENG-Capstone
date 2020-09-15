@@ -24,7 +24,7 @@ dag = DAG('create_capstone_dag',
 create_tables_task = PostgresOperator(
   task_id="create_tables",
   dag=dag,
-  sql='create_tables.sql',
+  sql='create_capstone.sql',
   postgres_conn_id="redshift"
 )
 
