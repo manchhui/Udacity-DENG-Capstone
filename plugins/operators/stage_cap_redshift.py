@@ -45,7 +45,7 @@ class StageToRedshiftOperatorCAP(BaseOperator):
         self.region = region
         self.aws_credentials_id = aws_credentials_id
         
-     def execute(self, context):
+    def execute(self, context):
         aws_hook = AwsHook(self.aws_credentials_id)
         credentials = aws_hook.get_credentials()
         redshift = PostgresHook(postgres_conn_id=self.redshift_conn_id)
@@ -89,7 +89,7 @@ class StageToRedshiftOperatorCAP(BaseOperator):
             redshift.run("DELETE FROM {} WHERE iduser IS NULL;".format(self.table))
             redshift.run("DELETE FROM {} WHERE isbn IS NULL;".format(self.table))
             redshift.run("DELETE FROM {} WHERE bookrating IS NULL;".format(self.table))
-        else if self.table == "staging_users":
+        elif self.table == "staging_users":
             redshift.run("DELETE FROM {} WHERE iduser IS NULL;".format(self.table))
-        else if self.table == "staging_books":
+        elif self.table == "staging_books":
             redshift.run("DELETE FROM {} WHERE isbn IS NULL;".format(self.table))
