@@ -11,11 +11,12 @@ class StageToRedshiftOperatorCAP(BaseOperator):
         FROM '{}'
         ACCESS_KEY_ID '{}'
         SECRET_ACCESS_KEY '{}'
-        FORMAT AS '{}'
+        FORMAT AS {}
+        DELIMITER ';'
         IGNOREHEADER 1
         REGION '{}';
     """
-  
+    
     copy_sql_json = """
         COPY {}
         FROM '{}'
