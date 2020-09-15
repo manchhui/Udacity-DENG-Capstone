@@ -48,19 +48,36 @@ The fact table in this snowflake scheme will be named "ratings" and is designed 
 ### 1.2 Dimension Tables
 The following tables in this snowflake scheme are all dimension tables.
 - users - This table will be used to record unique user details. The following is: `Row 0 '{'iduser': 533, 'location': 'london, england, united kingdom', 'age': 31}' of DIMENSION table 'users'
+  - iduser: Unique user id.
+  - location: Location of the user.
+  - age: Age of user, `-1` is used to represent NaN values found in the source data.
 
-- yearofpub - This table will be used to record unique song details. The following is: `Row 0 '{'yearofpub': 1974, 'isbn': '0800706544'}' of DIMENSION table 'yearofpub'`
+- yearofpub - This table will be used to record books (identified via their isbn) that are published in each year. The following is: `Row 0 '{'yearofpub': 1974, 'isbn': '0800706544'}' of DIMENSION table 'yearofpub'`
+  - yearofpub: Year as the index.
+  - isbn: Unique number for each book.
 
-- books_publisher - This table will be used to record, the number of ISBN's for each unique `idpublisher`. The following is: `Row 0 '{'idpublishers': 'cd47a7d6631d514987e4b09da9e71841', 'isbn': '0865050880'}' of DIMENSION table 'books_publisher'`
+- books_publisher - This table will be used to record, the number of `ISBN's` for each unique `idpublisher`. The following is: `Row 0 '{'idpublishers': 'cd47a7d6631d514987e4b09da9e71841', 'isbn': '0865050880'}' of DIMENSION table 'books_publisher'`
+  - idpublishers: Hash of `publisher`, to form a unique id for each publisher.
+  - isbn: Unique number for each book.
 
 - publishers - This table will be used to record unique publisher details. The following is: `Row 0 '{'idpublishers': '9af8b47d680fdeb68d9d26cfaaba70b3', 'publisher': 'Bantam Books'}' of DIMENSION table 'publishers'`
+  - idpublishers: Hash of `publisher`, to form a unique id for each publisher.
+  - publisher: Publisher name.
 
-- TBC - Row 0 '{'isbn': '8445071769', 'idauthor': '153e43074eabeb5d58200def94650acd'}' of DIMENSION table 'books_author'
+- books_author - This table will be used to record the number of `idauthor` for each unique `ISBN`. The following is: `Row 0 '{'isbn': '8445071769', 'idauthor': '153e43074eabeb5d58200def94650acd'}' of DIMENSION table 'books_author'`
+  - isbn: Unique number for each book.
+  - idauthor: Hash of `authorname`, to form a unique id for each author.
 
-- TBC -  Row 0 '{'idauthor': '1f96f4fd318463bfbff78f45b2691a2d', 'authorname': 'Richard Bruce Wright'}' of DIMENSION table 'authors'
+- authors - This table will be used to record unique author details. The following is: `Row 0 '{'idauthor': '1f96f4fd318463bfbff78f45b2691a2d', 'authorname': 'Richard Bruce Wright'}' of DIMENSION table 'authors'`
+  - idauthor: Hash of `authorname`, to form a unique id for each author.
+  - authorname: Author name.
 
-- TBC -  Row 0 '{'idtitles': '6beeacd4188d25601b22f0073d164f88', 'isbn': '0553280333'}' of DIMENSION table 'books_title'
+- books_title -  This table will be used to record the number of `ISBN's` for each unique `idTitle`. The following is: `Row 0 '{'idtitles': '6beeacd4188d25601b22f0073d164f88', 'isbn': '0553280333'}' of DIMENSION table 'books_title'`
+  - idtitles: Hash of `title`, to form a unique id for each book title.
+  - isbn: Unique number for each book.
 
-- TBC -  Row 0 '{'idtitles': '6a9934e08ff5b352fda9c7ed7428f302', 'title': 'Modern Manners: An Etiquette Book for Rude People'}' of DIMENSION table 'titles'
+- titles -  This table will be used to record unique book title details. The following is: `Row 0 '{'idtitles': '6a9934e08ff5b352fda9c7ed7428f302', 'title': 'Modern Manners: An Etiquette Book for Rude People'}' of DIMENSION table 'titles'`
+  - idtitles: Hash of `title`, to form a unique id for each book title.
+  - title: Book title.
 
 <br/>
