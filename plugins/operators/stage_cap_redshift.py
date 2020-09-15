@@ -36,7 +36,7 @@ class StageToRedshiftOperatorCAP(BaseOperator):
                  format_type="",
                  *args, **kwargs):
 
-        super(StageToRedshiftOperator, self).__init__(*args, **kwargs)
+        super(StageToRedshiftOperatorCAP, self).__init__(*args, **kwargs)
         self.table = table
         self.redshift_conn_id = redshift_conn_id
         self.s3_bucket = s3_bucket
