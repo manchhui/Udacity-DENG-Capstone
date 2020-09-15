@@ -15,5 +15,5 @@ class UdacityPlugin(AirflowPlugin):
         operators.DataQualityOperatorCAP
     ]
     helpers = [
-        helpers.SqlQueries
+        helpers.SqlCAPQueries
     ]
