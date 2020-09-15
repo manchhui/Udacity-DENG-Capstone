@@ -15,7 +15,7 @@ default_args = {
     'email_on_retry': False,    
 }
 
-dag = DAG('create_tables_dag',
+dag = DAG('create_capstone_dag',
           default_args=default_args,
           description='Create Staging, Fact and Dimension Tables in Redshift',
           schedule_interval='@once',
