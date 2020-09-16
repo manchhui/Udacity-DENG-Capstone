@@ -4,6 +4,18 @@ from airflow.utils.decorators import apply_defaults
 from helpers import SqlCAPQueries
 
 class LoadFactOperatorCAP(BaseOperator):
+    
+    """ 
+    Summary: Loads fact table
+    
+    Description: The MAIN DAG calls this operator to load the FACT table.
+    
+    Parameters: 
+    MAIN DAG passes the table name and the name of the SQL code to lift from "SqlCAPQueries" to allow this custom operator to insert data.
+    
+    Returns: 
+    Nil.
+    """
 
     ui_color = '#F98866'
 
