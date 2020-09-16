@@ -5,6 +5,19 @@ from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
 
 class StageToRedshiftOperatorCAP(BaseOperator):
+    
+    """ 
+    Summary: Loads S3 data to Redshift
+    
+    Description: The MAIN DAG calls this operator to load S3 source data to staging tables on Amazon Redshift.
+    
+    Parameters: 
+    MAIN DAG passes the table names, s3 bucket details and format_type to allow the operator to implement the correct COPY command.
+    
+    Returns: 
+    Nil.
+    """
+    
     ui_color = '#358140'
     copy_sql_csv = """
         COPY {}
