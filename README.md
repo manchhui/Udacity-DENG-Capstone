@@ -154,7 +154,7 @@ To use the Airflow's UI you must first configure your AWS credentials and connec
 > * Port: Enter 5439.
 > Once you've entered these values, select Save.
 
-### 3.2 Running "udac_capstone.py"
+### 3.2 Running "udac_capstone_dag.py"
 * Start the Airflow web server. 
 * Once the Airflow web server is ready, access the Airflow UI. 
 * First you MUST run "create_capstone.py" before "udac_capstone_dag.py" to ensure all the staging, fact and dimension tables are created before data can be loaded into them.
