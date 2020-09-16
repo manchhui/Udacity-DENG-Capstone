@@ -43,7 +43,7 @@ class SqlCAPQueries:
         FROM staging_books;
     """)
 
-    books_author_insert = ("""
+    books_author_table_insert = ("""
         INSERT INTO books_author
         SELECT distinct ISBN, md5(bookauthor) AS idauthor
         FROM staging_books;
