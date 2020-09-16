@@ -1,9 +1,9 @@
 class SqlCAPQueries:
     
     """ 
-    Insert data into all the FACT and DIMENSION tables. 
+    Summary: Insert data into all the FACT and DIMENSION tables. 
 
-    File of all the SQL code to insert data into all the FACT and DIMENSION tables. 
+    Description: File of all the SQL code to insert data into all the FACT and DIMENSION tables. 
 
     Parameters: 
     Called by custom operators "LoadDimensionOperatorCAP" and "LoadFactOperatorCAP"
