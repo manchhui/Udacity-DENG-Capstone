@@ -1,6 +1,6 @@
 # Udacity Data Engineering Nanodegree Programme - Capstone Project
 
-## Introduction
+## Project Overview & Project Scope and Data Gathering
 An online book store company, Valdivian,  wants to analyse the data they've been collecting on books and user ratings of these specific books from their app and online website. The analytics team is particularly interested in understanding which books users rate the most, and the data scientists are interested in using machine learning algorithms to develop a book recommendation system. Currently, they don't have an easy way to query their data, which resides in a directories containing a CSV file on user data, JSON logs of user ratings and another CSV file of metadata on books.
 
 They want to implement a data warehouse which is designed to optimise queries on user rating analysis, additionally, the ETL pipelines are to be high-grade data pipelines that:
@@ -8,8 +8,8 @@ They want to implement a data warehouse which is designed to optimise queries on
 * Are dynamic and built from reusable tasks.
 * Have automated data quality checks that catch any discrepancies in the datasets.
 
-#### Source Data
-The source data resides on AWS S3 and needs to be processed in Valdivian's data warehouse which resides on Amazon Redshift. The source datasets consist of JSON file of logs that tell them about users **ratings** of books on their store, CSV files that hold **users** information, and CSV metadata about the **books** the are available on the store.
+#### Data Exploration and Assessment
+The source data resides on AWS S3 and needs to be processed in Valdivian's data warehouse which resides on Amazon Redshift. The source datasets consist of JSON file of logs that tell them about users **ratings** of books on their store, CSV files that hold **users** information, and CSV metadata about the **books** the are available on the store. 
 
 * **s3://udacity-capstone-project-828/ratings**: data about book ratings, example of row '0' of the data as follows:
   `{'Book-Rating': 0, 'ISBN': '034545104X', 'User-ID': 276725}`
@@ -32,7 +32,7 @@ A brief description of each of the three core technologies that is used in this 
 
 <br/>
 
-## 1. Database Design Description
+## 1. Database Design Description (Data Model Definition & Model the Data)
 The data from the three source datasets, described above, will be used to create the following snowflake schema database for optimized queries on book ratings:
 
 ![](https://github.com/manchhui/Udacity-DENG-Capstone/blob/master/21EE3C3C-9D3F-43AA-8EC0-A09BCAC3EA57.jpeg)
@@ -91,8 +91,8 @@ Finally the following subsections contain brief descriptions of the rest of the 
 #### 2.1.1 create_capstone.py
 This **dag** must be used first before the **main dag** "udac_capstone_dag.py"
 
-#### 2.1.2 udac_sl_etl_dag.py
-This **main dag** contains all the operator calls and task dependencies to correctly perform ETL of the data from AWS S3 into the fact and dimension tables on AWS Redshift. , refer to the diagram below for the details of task dependencies.
+#### 2.1.2 udac_capstone.py
+This **main dag** contains all the operator calls and task dependencies to correctly perform ETL of the data from AWS S3 into the fact and dimension tables on AWS Redshift, refer to the diagram below for the details of task dependencies and ETL flow:
 
 ![](https://github.com/manchhui/Udacity-DENG-Capstone/blob/master/55F1A69C-CFD1-4AF6-B9CE-21527459BFF8.jpeg)
 
@@ -160,4 +160,11 @@ To use the Airflow's UI you must first configure your AWS credentials and connec
 * Start the Airflow web server. 
 * Once the Airflow web server is ready, access the Airflow UI. 
 * First you MUST run "create_capstone.py" before "udac_capstone_dag.py" to ensure all the staging, fact and dimension tables are created before data can be loaded into them.
+
+## 4. Complete Project Write Up
+What has been implemented in this project is a data warehouse on AWS redshift that uses Airflow to handle scheduling and ETL design. These technologies were explicitly chosen, knowing that there could potentially be a 100x increase in data as well as allow hundreds of concurrent users to query the data. 
+
+The chosen technologies are easily scalable, removing the need for Valdivian to manage onsite infrastructure, and therefore can quickly scale up or down computational resources while easily maintaining robust ETL pipelines. 
+
+The Airflow scheduler has already been set to run every day at 7 am. Still, if required, the business can amend the schedule to be run at any time.
 
