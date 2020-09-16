@@ -4,6 +4,18 @@ from airflow.utils.decorators import apply_defaults
 from helpers import SqlCAPQueries
 
 class LoadDimensionOperatorCAP(BaseOperator):
+    
+    """ 
+    Summary: Loads dimension tables
+    
+    Description: The MAIN DAG calls this operator after loading the DIMENSION tables.
+    
+    Parameters: 
+    MAIN DAG passes the table name and the name of the SQL code to lift from "SqlCAPQueries" to allow this custom operator to insert data.
+    
+    Returns: 
+    Nil.
+    """
 
     ui_color = '#80BD9E'
 
