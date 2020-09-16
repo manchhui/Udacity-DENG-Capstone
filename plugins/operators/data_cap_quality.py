@@ -3,6 +3,18 @@ from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
 
 class DataQualityOperatorCAP(BaseOperator):
+    
+    """ 
+    Summary: Check tables contain data.
+    
+    Description: The MAIN DAG calls this operator after loading the FACT and DIMENSION tables to check that data had actually been transferred 
+    
+    Parameters: 
+    MAIN DAG passes the tables names to this custom operator.
+    
+    Returns: 
+    Logs the results of the check.
+    """
 
     ui_color = '#89DA59'
 
