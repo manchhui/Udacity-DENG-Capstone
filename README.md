@@ -83,7 +83,9 @@ The following tables in this snowflake scheme are all dimension tables.
 <br/>
 
 ## 2. Files in the repository
-There are two source datasets, one called "song" and another "log" and these are located on the AWS S3 bucket as detailed in the introduction above. The following subsections contain brief descriptions of the rest of the files in this repository: 
+There are three source datasets, one called "users", another called "books" and another "ratings" and these are located on the AWS S3 bucket as detailed in the introduction above. Within the root of this repository is a few .jpegs which are used in this README plus "Capstone Project.ipynb" which forms part of the submission to explain the through processes that have gone into this project. 
+
+Finally the following subsections contain brief descriptions of the rest of the files in this repository: 
 
 ### 2.1 Files within "/dags" folder:
 #### 2.1.1 create_capstone.py
