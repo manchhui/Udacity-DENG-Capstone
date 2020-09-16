@@ -1,4 +1,18 @@
 class SqlCAPQueries:
+    
+    """ 
+    Insert data into all the FACT and DIMENSION tables. 
+
+    File of all the SQL code to insert data into all the FACT and DIMENSION tables. 
+
+    Parameters: 
+    Called by custom operators "LoadDimensionOperatorCAP" and "LoadFactOperatorCAP"
+
+    Returns: 
+    SQL code
+
+    """
+    
     users_table_insert = ("""
         INSERT INTO users
         SELECT distinct iduser, location, age
