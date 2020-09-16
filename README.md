@@ -81,3 +81,81 @@ The following tables in this snowflake scheme are all dimension tables.
   - title: Book title.
 
 <br/>
+
+## 2. Files in the repository
+There are two source datasets, one called "song" and another "log" and these are located on the AWS S3 bucket as detailed in the introduction above. The following subsections contain brief descriptions of the rest of the files in this repository: 
+
+### 2.1 Files within "/dags" folder:
+#### 2.1.1 create_capstone.py
+This **dag** must be used first before the **main dag** "udac_capstone_dag.py"
+
+#### 2.1.2 udac_sl_etl_dag.py
+This **main dag** contains all the operator calls and task dependencies to correctly perform ETL of the data from AWS S3 into the fact and dimension tables on AWS Redshift. , refer to the diagram below for the details of task dependencies.
+
+![](https://github.com/manchhui/Udacity-DENG-Capstone/blob/master/55F1A69C-CFD1-4AF6-B9CE-21527459BFF8.jpeg)
+
+Furthermore the default parameters are as below:
+* The DAG does not have dependencies on past runs
+* On failure, the task are retried 3 times
+* Retries happen every 5 minutes
+* Catchup is turned off
+* Do not email on retry
+
+### 2.2 Files within "/plugins/operators/" folder:
+#### 2.2.1 stage_cap_redshift.py
+This python script is the stage operator and loads any JSON formatted, song and log, files from S3 to Amazon Redshift. The operator creates and runs a SQL COPY statement based on the parameters provided by the **main dag** "udac_capstone_dag.py" that calls this operator.
+
+Additionally this operator contains a backfill feature that can load specific timestamped log files from S3 based on the execution time of the dag.
+
+#### 2.2.2 load_cap_dimension.py
+This python script is the dimension operator and it utilises the **sql_cap_queries.py** helper file to run data transformations. Dimension loads are loaded, based on the parameters provided by the **main dag** "udac_capstone_dag.py", with the truncate-insert pattern where the target table is emptied before the load. However a parameter exists that allows switching between insert mode or append mode when loading dimensions. 
+
+#### 2.2.3 fact_cap_dimension.py
+This python script is the fact operator and it utilises the **sql_cap_queries.py** helper file to run data transformations. Fact loads are loaded as append mode only.
+
+#### 2.2.4 data_cap_quality.py
+The final operator is the data quality operator, which is used to run checks on the data itself. The operator's main functionality is to receive perform SQL based tests to ensure data has been copied and exists in each of the fact and dimension tables. The test result and expected result are checked and if there is no match, the operator will raise an exception.
+
+### 2.3 File within "/plugins/helpers/" folder:
+#### 2.3.1 sql_cap_queries.py
+This is called by the fact and load operators to perform ETL from the users, ratings and books staging tables to each of the fact and dimension tables.
+
+<br/>
+
+## 3. User Guide
+### 3.1 Setup Airflow
+To use the Airflow's UI you must first configure your AWS credentials and connection to Redshift.
+
+> ##### 1. To go to the Airflow UI:
+> * From within the Udacity Project Workspace, click on the blue Access Airflow button in the bottom right.
+> * If you run Airflow locally, open http://localhost:8080 in Google Chrome (other browsers occasionally have issues rendering the Airflow UI).
+
+> ##### 2. Click on the Admin tab and select Connections.
+> ![](https://github.com/manchhui/Udacity-DENG-P5-Airflow/blob/master/89E90931-37D2-4163-8D8C-937C7957B2D0_4_5005_c.jpeg)
+
+> ##### 3. Under Connections, select Create.
+> ![](https://github.com/manchhui/Udacity-DENG-P5-Airflow/blob/master/97F8D006-16BD-4446-B045-1717375552E1_4_5005_c.jpeg)
+
+> ##### 4. On the create connection page, enter the following values:
+> * Conn Id: Enter aws_credentials.
+> * Conn Type: Enter Amazon Web Services.
+> * Login: Enter your Access key ID from the IAM User credentials you downloaded earlier.
+> * Password: Enter your Secret access key from the IAM User credentials you downloaded earlier.
+
+> Once you've entered these values, select Save and Add Another.
+
+> ##### 5. On the next create connection page, enter the following values:
+> * Conn Id: Enter redshift.
+> * Conn Type: Enter Postgres.
+> * Host: Enter the endpoint of your Redshift cluster, excluding the port at the end. You can find this by selecting your cluster in the Clusters page of the Amazon Redshift console. See where this is located in the screenshot below. IMPORTANT: Make sure to NOT include the port at the end of the Redshift endpoint string.
+> * Schema: Enter dev. This is the Redshift database you want to connect to.
+> * Login: Enter awsuser.
+> * Password: Enter the password you created when launching your Redshift cluster.
+> * Port: Enter 5439.
+> Once you've entered these values, select Save.
+
+### 3.2 Running "udac_capstone.py"
+* Start the Airflow web server. 
+* Once the Airflow web server is ready, access the Airflow UI. 
+* First you MUST run "create_capstone.py" before "udac_capstone_dag.py" to ensure all the staging, fact and dimension tables are created before data can be loaded into them.
+
